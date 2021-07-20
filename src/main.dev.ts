@@ -75,7 +75,7 @@
      webPreferences: {
        nodeIntegration: true,
      },
-     fullscreen: true,
+     //fullscreen: true,
    });
  
    mainWindow.loadURL(`file://${__dirname}/index.html`);
