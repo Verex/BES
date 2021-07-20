@@ -22,7 +22,10 @@ class Application extends React.Component<Props, State> {
   }
 
   getMedia = async () => {
-    const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: { height: 1080 },
+    });
+    console.log(stream);
     this.setState({ videoStream: stream });
   };
 
