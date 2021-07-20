@@ -1,19 +1,24 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.global.css';
-import ReactPlayer from 'react-player/youtube';
+import ReactPlayer from 'react-player';
 
 interface Props {}
 
 interface State {
   videoStream: MediaStream | null;
+  videoPlaying: boolean;
 }
 class Application extends React.Component<Props, State> {
+
+  videoPlayer: ReactPlayer | null = null;
+
   constructor(props: Props) {
     super(props);
 
     this.state = {
       videoStream: null,
+      videoPlaying: false
     };
   }
 
@@ -23,23 +28,20 @@ class Application extends React.Component<Props, State> {
 
   getMedia = async () => {
     const stream = await navigator.mediaDevices.getUserMedia({
-      video: { height: 1080 },
+      video: true,
     });
     console.log(stream);
-    this.setState({ videoStream: stream });
+    this.setState({ videoStream: stream, videoPlaying: true });
   };
 
   render() {
-    if (!this.state.videoStream) {
-      return <span>&#128512;</span>;
-    }
-
     return (
       <ReactPlayer
-        url={this.state.videoStream}
-        playing={true}
+        url={this.state.videoStream ? this.state.videoStream : "https://www.youtube.com/watch?v=m_ZW1mxGh0s"}
+        playing={this.state.videoPlaying}
         width="100%"
         height="100%"
+        ref={ref => this.videoPlayer = ref}
       />
     );
   }
