@@ -15,7 +15,9 @@ class Application extends React.Component<Props, State> {
     this.state = {
       videoStream: null,
     };
+  }
 
+  componentDidMount() {
     this.getMedia();
   }
 
