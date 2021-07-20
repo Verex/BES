@@ -18,19 +18,18 @@ class Application extends React.Component<Props, State> {
 
     this.state = {
       videoStream: null,
-      videoPlaying: false
+      videoPlaying: true
     };
   }
 
   componentDidMount() {
-    this.getMedia();
+    //this.getMedia();
   }
 
   getMedia = async () => {
     const stream = await navigator.mediaDevices.getUserMedia({
       video: true,
     });
-    console.log(stream);
     this.setState({ videoStream: stream, videoPlaying: true });
   };
 
