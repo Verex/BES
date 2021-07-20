@@ -258,7 +258,8 @@
     "react-player": "^2.9.0",
     "react-router-dom": "^5.2.0",
     "regenerator-runtime": "^0.13.5",
-    "source-map-support": "^0.5.19"
+    "source-map-support": "^0.5.19",
+    "wrtc": "^0.4.7"
   },
   "devEngines": {
     "node": ">=10.x",
