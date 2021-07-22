@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.global.css';
 import ReactPlayer from 'react-player';
+import Client from './client';
 
 interface Props {}
 
@@ -24,12 +25,19 @@ class Application extends React.Component<Props, State> {
 
   componentDidMount() {
     //this.getMedia();
+    let client = new Client('zach');
+    client.connect().then(() => {
+      console.log('Connected.');
+    }).catch((err) => {
+      console.log(err);
+    });
   }
 
   getMedia = async () => {
     const stream = await navigator.mediaDevices.getUserMedia({
       video: true,
     });
+
     this.setState({ videoStream: stream, videoPlaying: true });
   };
 
